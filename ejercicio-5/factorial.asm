@@ -5,7 +5,7 @@ section .data
     newline      db 0xA
 
 section .bss
-    output      resb 32    ; Buffer para almacenar el resultado en ASCII
+    output      resb 32    
 
 section .text
     global _start
