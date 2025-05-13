@@ -1,9 +1,9 @@
 section .data
-    string1 db "Hola Mundo", 0      ; Primera cadena, terminada en NULO
-    len1 equ $ - string1 -1         ; Longitud de string1 (sin contar el NULO)
+    string1 db "Hola Mundo", 0      
+    len1 equ $ - string1 -1         
 
-    string2 db "Hola Mundo", 0      ; Segunda cadena, terminada en NULO
-    len2 equ $ - string2 -1         ; Longitud de string2 (sin contar el NULO)
+    string2 db "Hola Mundo", 0      
+    len2 equ $ - string2 -1         
 
     ; Para probar con cadenas diferentes:
     ; string2 db "Hola Munda", 0
