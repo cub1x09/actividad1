@@ -15,7 +15,7 @@ _start:
     mov rax, 5             ; n = 5
     call factorial         ; RAX = 5!
 
-    ; --- Convertir resultado (RAX) a ASCII ---
+    
     mov rdi, output        ; Donde guardar el resultado
     call int_to_ascii
 
@@ -30,44 +30,44 @@ _start:
     mov rax, 1
     mov rdi, 1
     mov rsi, output
-    mov rdx, 32            ; Longitud máxima
+    mov rdx, 32            
     syscall
 
-    ; --- Nueva línea ---
+    
     mov rax, 1
     mov rdi, 1
     mov rsi, newline
     mov rdx, 1
     syscall
 
-    ; --- Salir ---
-    mov rax, 60            ; sys_exit
-    xor rdi, rdi           ; status 0
+    
+    mov rax, 60            
+    xor rdi, rdi           
     syscall
 
 ; ===== FUNCIONES =====
 factorial:
     ; Calcula RAX! (predefinido)
-    mov rcx, rax           ; RCX = n
-    mov rax, 1             ; RAX = 1 (resultado)
+    mov rcx, rax           
+    mov rax, 1             
     cmp rcx, 0
-    je end_fact            ; Si n=0, retorna 1
+    je end_fact            
 
 fact_loop:
-    imul rax, rcx          ; RAX *= RCX
-    dec rcx                ; RCX--
-    jnz fact_loop          ; Repetir si RCX > 0
+    imul rax, rcx          
+    dec rcx                
+    jnz fact_loop          
 
 end_fact:
     ret
 
 int_to_ascii:
-    ; Convierte RAX a ASCII y guarda en RDI
+    
     push rdi
     push rsi
     push rcx
-    mov rbx, 10            ; Base 10
-    xor rcx, rcx           ; Contador de dígitos
+    mov rbx, 10            
+    xor rcx, rcx           
 
     ; Caso especial para 0
     test rax, rax
@@ -78,17 +78,17 @@ int_to_ascii:
 
 convert:
     xor rdx, rdx
-    div rbx                ; RDX = residuo, RAX = cociente
-    add dl, '0'            ; Convertir a ASCII
-    push rdx               ; Guardar dígito en pila
-    inc rcx                ; Incrementar contador
+    div rbx                
+    add dl, '0'            
+    push rdx               
+    inc rcx                
     test rax, rax
     jnz convert
 
-    ; Extraer dígitos en orden correcto
+    
 store:
     pop rdx
-    mov [rdi], dl          ; Guardar en buffer
+    mov [rdi], dl          
     inc rdi
     loop store
 
