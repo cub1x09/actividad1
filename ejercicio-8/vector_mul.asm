@@ -2,7 +2,7 @@ section .bss
     input_num_str resb 6
     vectorA resd 4
     vectorB resd 4
-    print_buffer resb 12      ; print_buffer[0..9] para dígitos, [10] para NULO/LF, [11] sin usar
+    print_buffer resb 12      
 
 section .data
     msgA db "Ingresa 4 numeros para el Vector A (uno por linea):", 10, 0
@@ -37,18 +37,18 @@ read_int:
     cmp cl, '9'
     jg .read_done_err
     sub cl, '0'
-    mov ebx, 10                 ; EBX se usa para la multiplicación
+    mov ebx, 10                 
     imul eax, ebx
     add eax, ecx
     jmp .read_loop
 .read_done_err:
 .read_done:
-    pop rbx                     ; Restaurar RBX
+    pop rbx                     
     ret
 
-; --- print_int (VERSIÓN DE DEPURACIÓN SIMPLIFICADA CON CORRECCIÓN DE RBX) ---
+
 print_int_debug:
-    push rbx                    ; *** GUARDAR RBX ***
+    push rbx                    
 
     mov rdi, print_buffer
     mov rcx, 10
@@ -66,13 +66,13 @@ print_int_debug:
     je .L_debug_print_zero_char
 
 .L_debug_convert_loop:
-    mov ebx, 10                 ; Usar EBX para el divisor
+    mov ebx, 10                 
     xor edx, edx
     div ebx
     add dl, '0'
     mov [rdi], dl
     dec rdi
-    cmp rdi, print_buffer-1     ; Asegurarse de no escribir antes del buffer
+    cmp rdi, print_buffer-1     
     je .L_debug_print_now
     test eax, eax
     jnz .L_debug_convert_loop
@@ -85,10 +85,10 @@ print_int_debug:
     mov rax, 1
     mov rdi, 1
     mov rsi, print_buffer
-    mov rdx, 11                 ; 10 caracteres + LF
+    mov rdx, 11                 
     syscall
 
-    pop rbx                     ; *** RESTAURAR RBX ***
+    pop rbx                     
     ret
 
 _start:
@@ -124,12 +124,12 @@ _start:
     mov rdx, lenR
     syscall
 
-    mov rbx, 0                  ; Inicializar RBX para el bucle mul_loop
+    mov rbx, 0                  
 .mul_loop:
     mov eax, [vectorA + rbx]
     imul eax, [vectorB + rbx]
 
-    call print_int_debug      ; LLAMAR A LA VERSIÓN DE DEPURACIÓN
+    call print_int_debug      
 
     add rbx, 4
     cmp rbx, 16
