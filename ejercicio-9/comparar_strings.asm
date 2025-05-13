@@ -16,9 +16,9 @@ section .text
 
 
 print_string:
-    mov rax, 1          ; syscall sys_write
-    mov rdi, 1          ; stdout
-    ; RSI y RDX son pasados por el llamador
+    mov rax, 1          
+    mov rdi, 1          
+    
     syscall
     ret
 
