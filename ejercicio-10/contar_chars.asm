@@ -4,7 +4,7 @@ section .bss
 
 section .data
     prompt_msg db "Introduce una cadena (max 255 caracteres): ", 0
-    ; len_prompt equ $ - prompt_msg ; No se usa si usamos print_string_z
+    ; len_prompt equ $ - prompt_msg ; No se usa si usamos print_string_
 
     count_msg db "Numero de caracteres ingresados (sin Enter): ", 0
     ; len_count_msg equ $ - count_msg ; No se usa
