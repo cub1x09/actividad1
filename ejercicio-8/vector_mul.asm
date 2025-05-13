@@ -18,7 +18,7 @@ section .text
     global _start
 
 read_int:
-    push rbx                    ; Salvar RBX (porque se usa EBX dentro)
+    push rbx                    
     mov rax, 0
     mov rdi, 0
     mov rsi, input_num_str
