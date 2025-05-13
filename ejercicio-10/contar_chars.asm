@@ -1,6 +1,6 @@
 section .bss
     input_buffer resb 256
-    print_buffer resb 12      ; Movido a .bss
+    print_buffer resb 12      
 
 section .data
     prompt_msg db "Introduce una cadena (max 255 caracteres): ", 0
@@ -107,7 +107,7 @@ _start:
     cmp rax, 0
     jle .set_count_to_zero
 
-    ; Si se leyó algo (RAX > 0)
+   
     dec rax                
 
     jmp .count_done
