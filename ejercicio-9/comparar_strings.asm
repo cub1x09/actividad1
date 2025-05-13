@@ -5,13 +5,6 @@ section .data
     string2 db "Hola Mundo", 0      
     len2 equ $ - string2 -1         
 
-    ; Para probar con cadenas diferentes:
-    ; string2 db "Hola Munda", 0
-    ; len2 equ $ - string2 -1
-
-    ; string2 db "Hola", 0
-    ; len2 equ $ - string2 -1
-
     msg_iguales db "Las cadenas son iguales.", 10, 0
     len_iguales equ $ - msg_iguales
 
